@@ -5,6 +5,7 @@ namespace Counters\Persistence;
 use Counters\Core\Exceptions\CounterDoesNotExistException;
 use Counters\Core\IncrementorInterface;
 use Counters\Management\CounterPersistenceDriverInterface;
+use Exception;
 
 /**
  * Class FileSystemPersistenceDriver
@@ -27,9 +28,14 @@ class FileSystemPersistenceDriver implements CounterPersistenceDriverInterface
 
     public function __construct(string $rootPath)
     {
-        if (!is_dir($rootPath) || !is_writable($rootPath)) {
-            throw new \Exception("Target path is not writeable");
+        if (file_exists($rootPath)) {
+            if (!is_dir($rootPath) || !is_writable($rootPath)) {
+                throw new Exception("Target path is not writeable");
+            }
+        } else if (!mkdir($rootPath)) {
+            throw new Exception("Could not create storage directory");
         }
+
         $this->rootPath = $rootPath;
     }
 
