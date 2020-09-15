@@ -23,6 +23,14 @@ interface CounterManagerInterface
     public function getCounterInstance(string $uuid): ?Counter;
 
     /**
+     * Checks if a Counter with specified UUID already exists in the system
+     *
+     * @param string $uuid
+     * @return bool
+     */
+    public function exists(string $uuid): bool;
+
+    /**
      * Registers an instance of Counter inside this Manager
      *
      * @param Counter $counter

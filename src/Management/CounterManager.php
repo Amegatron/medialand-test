@@ -87,4 +87,9 @@ class CounterManager implements CounterManagerInterface
     {
         $this->persistenceDriver = $persistenceDriver;
     }
+
+    public function exists(string $uuid): bool
+    {
+        return $this->singletonManager->has($uuid, Counter::class) || $this->persistenceDriver->exists($uuid);
+    }
 }

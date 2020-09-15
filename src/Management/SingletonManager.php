@@ -15,6 +15,7 @@ class SingletonManager implements SingletonManagerInterface
         if (!$instance) {
             throw new InstanceDoesNotExistException($id, $className);
         }
+        return $instance;
     }
 
     public function tryGet($id, string $className)
