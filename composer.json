@@ -1,0 +1,19 @@
+{
+  "name": "amegatron/media-land-test",
+  "description": "Test task for the interview for MediaLand",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "amega",
+      "email": "amego2006@gmail.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "Counters\\": "src/"
+    }
+  }
+}
