@@ -1,34 +1,35 @@
 version: '3'
 services:
   # PHP
-  app:
+  counters-app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: counters-app
     image: php:7.4-fpm
-    container_name: app
     restart: unless-stopped
     tty: true
     working_dir: /var/www
     networks:
-      - app-network
+      - counters
 
   # NGINX
-  nginx:
+  counters-web-server:
     build:
       context: nginx
       dockerfile: Dockerfile
+    container_name: counters-web-server
     image: nginx:alpine
-    container_name: web_server
     restart: unless-stopped
     tty: true
     ports:
       - "8080:80"
-      - "443:443"
     networks:
-      - app-network
+      - counters
+    depends_on:
+      - counters-app
 
 # Network config
 networks:
-  app-network:
+  counters:
     driver: bridge
