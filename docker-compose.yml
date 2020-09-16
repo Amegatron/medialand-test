@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: counters-app
     image: php:7.4-fpm
     restart: unless-stopped
     tty: true
@@ -15,7 +14,6 @@ services:
 
   # NGINX
   counters-web-server:
-    container_name: counters-web-server
     image: nginx:alpine
     restart: unless-stopped
     tty: true

@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y build-essential \
     locales \
     zip \
     curl
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+RUN apt-get clean
 
 RUN docker-php-ext-install json iconv
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
