@@ -1,0 +1,34 @@
+version: '3'
+services:
+  # PHP
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: php:7.4-fpm
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www
+    networks:
+      - app-network
+
+  # NGINX
+  nginx:
+    build:
+      context: nginx
+      dockerfile: Dockerfile
+    image: nginx:alpine
+    container_name: web_server
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8080:80"
+      - "443:443"
+    networks:
+      - app-network
+
+# Network config
+networks:
+  app-network:
+    driver: bridge
