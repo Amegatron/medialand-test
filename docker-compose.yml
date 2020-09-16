@@ -10,26 +10,24 @@ services:
     restart: unless-stopped
     tty: true
     working_dir: /var/www
-    networks:
-      - counters
+    volumes:
+      - ./:/var/www
 
   # NGINX
   counters-web-server:
-    build:
-      context: nginx
-      dockerfile: Dockerfile
     container_name: counters-web-server
     image: nginx:alpine
     restart: unless-stopped
     tty: true
+    volumes:
+      - ./nginx/conf.d/:/etc/nginx/conf.d/:ro
+      - ./:/var/www
     ports:
       - "8080:80"
-    networks:
-      - counters
     depends_on:
       - counters-app
 
 # Network config
-networks:
-  counters:
-    driver: bridge
+#networks:
+#  default:
+#    driver: bridge
