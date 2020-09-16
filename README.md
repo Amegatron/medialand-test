@@ -7,7 +7,8 @@ git clone https://github.com/Amegatron/medialand-test.git
 ```
 #### Docker Compose ####
 ```
-docker-compose up --build 
+cd medialand-test
+docker-compose up
 ```
 Веб-сервис будет доступен по адресу `http://localhost:8080`
 
