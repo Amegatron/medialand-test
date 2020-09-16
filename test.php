@@ -4,7 +4,6 @@ use Counters\Commands\CreateOrIncrementCounterCommand;
 use Counters\Commands\GetCounterCommand;
 use Counters\Commands\Handlers\CreateOrIncrementCounterCommandHandler;
 use Counters\Commands\Handlers\GetCounterCommandHandler;
-use Counters\Core\Counter;
 use Counters\Core\CounterManagerInterface;
 use Counters\Management\CounterManager;
 use Counters\Management\SingletonManager;
@@ -12,7 +11,6 @@ use Counters\Persistence\FileSystemPersistenceDriver;
 use League\Tactician\CommandBus;
 use League\Tactician\Handler\CommandHandlerMiddleware;
 use League\Tactician\Handler\Locator\InMemoryLocator;
-use League\Tactician\Setup\QuickStart;
 
 require './vendor/autoload.php';
 
