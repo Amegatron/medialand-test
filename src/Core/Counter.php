@@ -37,6 +37,16 @@ class Counter
         $this->value = $value;
     }
 
+    private function __clone()
+    {
+
+    }
+
+    private function __wakeup()
+    {
+        throw new \Exception("Counter can not be unserialized");
+    }
+
     public static function getInstance(string $uuid, CounterManagerInterface $manager, int $initialValue = 0): self {
         $instance = $manager->getCounterInstance($uuid);
         if ($instance) {
